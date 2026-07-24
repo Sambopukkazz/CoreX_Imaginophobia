@@ -11,12 +11,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image fillZone;
     [SerializeField] private Slider progressBar;
 
-    private float rotationSpeed = 100f;
+    private float rotationSpeed = 200f;
     private float currentAngle = 0f;
     private float fillZoneStartAngle = 0f;
     private float fillZoneEndAngle = 0f;
 
     public bool skillCheckIsActive = false;
+
+    [SerializeField] private PlayerActions playerActions;
 
     void Start()
     {
@@ -37,6 +39,7 @@ public class UIManager : MonoBehaviour
             if(progressBar.value == 1f) {
                 skillCheckIsActive = false;
                 skillCheckUI.SetActive(false);
+                playerActions.allowMovement = true;
             }
         }
     }

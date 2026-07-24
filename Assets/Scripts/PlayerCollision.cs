@@ -1,45 +1,93 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
     [SerializeField] private GameObject skillCheckUI;
+    [SerializeField] private GameObject transitionUI;
 
+    private TextMeshProUGUI guideTxt;
+    private PlayerActions playerActions;
+    private Slider hideTimer;
     private bool hiding;
+    private bool dead;
+
+    public bool readyToHide;
+    public bool readyToOpenDoor;
 
     void Start()
     {
-        
+        playerActions = GetComponent<PlayerActions>();
+        guideTxt = transitionUI.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            if (readyToHide && !hiding) {
+                Debug.Log("Hide");
+                hiding = true;
+                playerActions.Hide();
+            }
+            else if (hiding) {
+                hiding = false;
+                playerActions.GetOutOfHiding();
+            }
+            else if (readyToOpenDoor) { 
+                LoadNextScene();
+            }
+        }
     }
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if(collision.gameObject.CompareTag("Enemy")) {
+    private void OnTriggerEnter2D(Collider2D collision) {
+        Debug.Log("Test");
+        if (collision.gameObject.CompareTag("Enemy")) {
             if (hiding) {
 
             }
-            Debug.Log("Collided with Enemy");
+            else {
+                dead = true;
+                playerActions.allowMovement = false;
+                StartCoroutine(LoadNextScene());
+            }
         }
         if(collision.gameObject.CompareTag("Pipe")) {
             skillCheckUI.GetComponent<UIManager>().StartSkillCheck();
+            playerActions.RepairObjects();
+            
         }
         else if (collision.gameObject.CompareTag("Hideout")) {
-
+            readyToHide = true;
+            Debug.Log("Ready");
         }
         else if (collision.gameObject.CompareTag("Door")) {
             
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision) {
-        
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("Hideout")) {
+            readyToHide = false;
+        }
+        else if (collision.gameObject.CompareTag("Door")) {
+
+        }
     }
 
     IEnumerator LoadNextScene() {
-        yield return new WaitForSeconds(2f);
+        transitionUI.GetComponent<Animator>().SetTrigger("ChangeScene");
+        yield return new WaitForSeconds(1f);
+        if (dead) {
+            guideTxt.text = "Try looking at the enemy on the right time!";
+            //Load Current Scene Again and try reset each value (restart mission on that scene)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else {
+            //Load Next Scene
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }

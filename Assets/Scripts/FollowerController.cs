@@ -20,7 +20,7 @@ public class FollowerController : MonoBehaviour
         if(Input.GetAxisRaw("Horizontal") != 0) {
             gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, player.transform.position, moveSpeed * Time.deltaTime);
         }
-        if(Mathf.Abs(player.transform.position.x - gameObject.transform.position.x) <= playerActions.spotLight.pointLightOuterRadius) {
+        if(Mathf.Abs(player.transform.position.x - gameObject.transform.position.x) <= playerActions.SpotLight.pointLightOuterRadius) {
             playerActions.RuduceLightRadius(0.1f);
         }
     }
