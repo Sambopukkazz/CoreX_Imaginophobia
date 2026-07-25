@@ -1,0 +1,702 @@
+fileFormatVersion: 2
+guid: 09d199767e81e874ea77fc3d4a2f38c9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7106990607961552968
+    second: asset-2_0
+  - first:
+      213: 144345071473588653
+    second: asset-2_1
+  - first:
+      213: -7241219693061946608
+    second: asset-2_2
+  - first:
+      213: 7919438833039523704
+    second: asset-2_3
+  - first:
+      213: -8059059945579521969
+    second: asset-2_4
+  - first:
+      213: -7876142010271097218
+    second: asset-2_5
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 30
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aafd60cca2125e4bb3d318d961a64bd
+      internalID: 715112456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 240
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e744a96b94fa9d45af5da558f4392cd
+      internalID: 1823540175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_2
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 240
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b96c2582b321f64a9b5be2c3f9b1b45
+      internalID: -323723285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_3
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 240
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a27842c3b8f67846a499e7dc3f60faa
+      internalID: -2076048629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 240
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fdc9fafc128e5b4ba12fd174ec8b55b
+      internalID: 2095773680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 240
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ddc5fb1cbfbbfe469aa19269497c65c
+      internalID: -1760335562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_6
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 240
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c83a79a79a425df438479fff955eafc8
+      internalID: -1173733165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_7
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 240
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba96a74db9dc713478eb0792a557efb9
+      internalID: 768416157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_8
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 240
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a5f76fc2ce4694ab659783146a16ed
+      internalID: -2009761235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_9
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 210
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56d3bebe2353d8b45914839d727a4014
+      internalID: -1312131363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_10
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 210
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ed8ea9cd8ec55e449682c19bb6bf940
+      internalID: 767541570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_11
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 210
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5479ec140268194cbfb7a86e894020e
+      internalID: 822536687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_12
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 210
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c7718ca02698e04b8cefaecf5aae644
+      internalID: 1855893050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_13
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 210
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8209a6436678644438bcbee6927cd227
+      internalID: 1320264632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_14
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 210
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0cc8228703ca5b40bcbf5305ac76198
+      internalID: -2013697955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_15
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 210
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3062eefb77a76744ba309fb30c4831df
+      internalID: -2035452737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_16
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 210
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 918e91854f3f06840bcad8f876c39765
+      internalID: 493159182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_17
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 210
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a26a84bd51cee014ab0c1f4b03b44a51
+      internalID: 1498811021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_18
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0da2c7c2fa84e24585e0c98c6ffc508
+      internalID: -1371528460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_19
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d97fa32c2b2b93408b143fcf58481a4
+      internalID: -234590525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_20
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3ce6be5c83ff174a807421e23133326
+      internalID: -1570563091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_21
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 180
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e2369a6d3c228449bb01e01cf8051e9
+      internalID: 407483516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_22
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fe075af354a5354f981f909bb97d4ea
+      internalID: 115927427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_23
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ead11c09f1a8f64a997e5aa4ec23856
+      internalID: 162605331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_24
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccdcd463d20e13e46a776c36aebcac77
+      internalID: -1004093259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: (fixed)_er_and_sewer_extra_25
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 150
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 368a95a132fadd943b56a4d943159f00
+      internalID: -2040507889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b04639cfdd736ee42939628aba2066cb
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      (fixed)_er_and_sewer_extra_0: 715112456
+      (fixed)_er_and_sewer_extra_1: 1823540175
+      (fixed)_er_and_sewer_extra_10: 767541570
+      (fixed)_er_and_sewer_extra_11: 822536687
+      (fixed)_er_and_sewer_extra_12: 1855893050
+      (fixed)_er_and_sewer_extra_13: 1320264632
+      (fixed)_er_and_sewer_extra_14: -2013697955
+      (fixed)_er_and_sewer_extra_15: -2035452737
+      (fixed)_er_and_sewer_extra_16: 493159182
+      (fixed)_er_and_sewer_extra_17: 1498811021
+      (fixed)_er_and_sewer_extra_18: -1371528460
+      (fixed)_er_and_sewer_extra_19: -234590525
+      (fixed)_er_and_sewer_extra_2: -323723285
+      (fixed)_er_and_sewer_extra_20: -1570563091
+      (fixed)_er_and_sewer_extra_21: 407483516
+      (fixed)_er_and_sewer_extra_22: 115927427
+      (fixed)_er_and_sewer_extra_23: 162605331
+      (fixed)_er_and_sewer_extra_24: -1004093259
+      (fixed)_er_and_sewer_extra_25: -2040507889
+      (fixed)_er_and_sewer_extra_3: -2076048629
+      (fixed)_er_and_sewer_extra_4: 2095773680
+      (fixed)_er_and_sewer_extra_5: -1760335562
+      (fixed)_er_and_sewer_extra_6: -1173733165
+      (fixed)_er_and_sewer_extra_7: 768416157
+      (fixed)_er_and_sewer_extra_8: -2009761235
+      (fixed)_er_and_sewer_extra_9: -1312131363
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
