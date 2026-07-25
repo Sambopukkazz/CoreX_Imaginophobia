@@ -9,6 +9,12 @@ TagManager:
   - Door
   - Scopophobia
   - Autophobia
+  - Enemy
+  - Ladder
+  - Lock
+  - Item
+  - Electric
+  - End
   layers:
   - Default
   - TransparentFX
