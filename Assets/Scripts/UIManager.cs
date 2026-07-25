@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
             }
 
             if(progressBar.value == 1f) {
+                playerActions.PlayRepairCompleteSound(playerCollision.obj);
                 skillCheckIsActive = false;
                 skillCheckUI.SetActive(false);
                 playerActions.allowMovement = true;
@@ -68,11 +69,21 @@ public class UIManager : MonoBehaviour
 
         if (needleAngle >= fillZoneStartAngle && needleAngle <= fillZoneEndAngle) {
             progressBar.value += 0.2f;
-            playerActions.PlayPipeSkillCheckSound(true);
+            if(playerCollision.obj == "Pipe") {
+                playerActions.PlayPipeSkillCheckSound(true);
+            }
+            else {
+                playerActions.PlayElecSkillCheckSound(true);
+            }
         }
         else {
             progressBar.value -= 0.25f;
-            playerActions.PlayPipeSkillCheckSound(false);
+            if (playerCollision.obj == "Pipe") {
+                playerActions.PlayPipeSkillCheckSound(false);
+            }
+            else {
+                playerActions.PlayElecSkillCheckSound(false);
+            }
         }
 
         rotationSpeed *= -1f;

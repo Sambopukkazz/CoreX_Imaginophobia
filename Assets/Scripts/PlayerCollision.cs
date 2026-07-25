@@ -20,8 +20,8 @@ public class PlayerCollision : MonoBehaviour
     public bool readyToHide;
     public bool readyToOpenDoor;
     public bool readyToRepair;
-    public bool readyToElec;
-    public
+
+    public string obj;
 
     void Start()
     {
@@ -42,7 +42,7 @@ public class PlayerCollision : MonoBehaviour
             }
             else if (readyToRepair && skillCheckUI.GetComponent<UIManager>().skillCheckIsActive == false) {
                 skillCheckUI.GetComponent<UIManager>().StartSkillCheck();
-                playerActions.RepairObjects("");
+                playerActions.RepairObjects(obj);
             }
             else if (readyToOpenDoor) { 
                 LoadNextScene();
@@ -58,6 +58,7 @@ public class PlayerCollision : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Pipe") || collision.gameObject.CompareTag("Electric")) {
             readyToRepair = true;
+            obj = collision.gameObject.tag;
             collision.transform.GetChild(0).gameObject.SetActive(true);
         }
         else if (collision.gameObject.CompareTag("Hideout")) {

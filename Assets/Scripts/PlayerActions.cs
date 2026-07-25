@@ -58,7 +58,10 @@ public class PlayerActions : MonoBehaviour
         animator.SetInteger("input", parameter);
 
         if (skillCheckUI.GetComponent<UIManager>().skillCheckIsActive) {
-            animator.SetTrigger("repair");
+            animator.SetBool("repair", true);
+        }
+        else {
+            animator.SetBool("repair", false);
         }
         if (allowMovement) {
             
@@ -154,20 +157,24 @@ public class PlayerActions : MonoBehaviour
 
     public void PlayPipeSkillCheckSound(bool success) {
         if(success) {
-            soundManager.PlaySingleSound(transform.position, "pipe", 2);
+            soundManager.PlaySingleSound(transform.position, "Pipe", 2);
         }
         else {
-            soundManager.PlaySingleSound(transform.position, "pipe", 3);
+            soundManager.PlaySingleSound(transform.position, "Pipe", 3);
         }
         
     }
     public void PlayElecSkillCheckSound(bool success) {
         if (success) {
-            soundManager.PlaySingleSound(transform.position, "elec", 2);
+            soundManager.PlaySingleSound(transform.position, "Electric", 2);
         }
         else {
-            soundManager.PlaySingleSound(transform.position, "elec", 3);
+            soundManager.PlaySingleSound(transform.position, "Electric", 3);
         }
 
+    }
+
+    public void PlayRepairCompleteSound(string obj) {
+        soundManager.PlaySingleSound(transform.position, obj, 0);
     }
 }

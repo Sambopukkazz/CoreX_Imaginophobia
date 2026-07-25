@@ -32,20 +32,22 @@ public class SoundManager : MonoBehaviour
     public void PlayRepairingClip(Vector2 pos, string obj) {
         speakerObject = Instantiate(speakerPrefab, pos, Quaternion.identity);
         speaker = speakerObject.GetComponent<AudioPlayer>();
-        if(obj == "pipe") {
+        if(obj == "Pipe") {
             loopSpeaker = speaker.PlayLoopClip(pipeSFX[1]);
         }
         else {
-
-        }
-        
+            loopSpeaker = speaker.PlayLoopClip(elecSFX[1]);
+        } 
     }
 
     public void PlaySingleSound(Vector2 pos, string sound,int index) {
         speakerObject = Instantiate(speakerPrefab, pos, Quaternion.identity);
         speaker = speakerObject.GetComponent<AudioPlayer>();
-        if(sound == "pipe") {
+        if(sound == "Pipe") {
             speaker.PlayAudioClip(pipeSFX[index]);
+        }
+        else if(sound == "Electric") {
+            speaker.PlayAudioClip(elecSFX[index]);
         }
         
     }
