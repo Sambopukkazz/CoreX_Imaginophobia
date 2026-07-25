@@ -18,6 +18,7 @@ public class PlayerCollision : MonoBehaviour
 
     public bool readyToHide;
     public bool readyToOpenDoor;
+    public bool readyToRepair;
 
     void Start()
     {
@@ -37,13 +38,16 @@ public class PlayerCollision : MonoBehaviour
                 hiding = false;
                 playerActions.GetOutOfHiding();
             }
+            else if (readyToRepair && skillCheckUI.GetComponent<UIManager>().skillCheckIsActive == false) {
+                skillCheckUI.GetComponent<UIManager>().StartSkillCheck();
+                playerActions.RepairObjects();
+            }
             else if (readyToOpenDoor) { 
                 LoadNextScene();
             }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("Test");
         if (collision.gameObject.CompareTag("Enemy")) {
             if (hiding) {
 
@@ -54,14 +58,13 @@ public class PlayerCollision : MonoBehaviour
                 StartCoroutine(LoadNextScene());
             }
         }
-        if(collision.gameObject.CompareTag("Pipe")) {
-            skillCheckUI.GetComponent<UIManager>().StartSkillCheck();
-            playerActions.RepairObjects();
-            
+        if (collision.gameObject.CompareTag("Pipe")) {
+            readyToRepair = true;
+            collision.transform.GetChild(0).gameObject.SetActive(true);
         }
         else if (collision.gameObject.CompareTag("Hideout")) {
+            collision.transform.GetChild(0).gameObject.SetActive(true);
             readyToHide = true;
-            Debug.Log("Ready");
         }
         else if (collision.gameObject.CompareTag("Door")) {
             
@@ -69,8 +72,13 @@ public class PlayerCollision : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("Pipe")) {
+            readyToRepair = true;
+            collision.transform.GetChild(0).gameObject.SetActive(false);
+        }
         if (collision.gameObject.CompareTag("Hideout")) {
             readyToHide = false;
+            collision.transform.GetChild(0).gameObject.SetActive(false);
         }
         else if (collision.gameObject.CompareTag("Door")) {
 

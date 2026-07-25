@@ -12,6 +12,7 @@ public class PlayerActions : MonoBehaviour
     public LayerMask layerMask;
     [SerializeField] private GameObject zoomCam;
     [SerializeField] private GameObject skillCheckUI;
+    [SerializeField] private Animator blinkVFX;
 
     private Rigidbody2D rb;
     private RaycastHit2D eyeSight;
@@ -67,7 +68,7 @@ public class PlayerActions : MonoBehaviour
         Debug.DrawRay(eyePos.transform.position, Vector2.right * rayDir * rayDistance, Color.yellow);
 
         if (eyeSight.collider != null && eyeSight.collider.CompareTag("Enemy")) {
-            //Play Blink Animation
+            blinkVFX.Play("Blink");
         }
     }
 
