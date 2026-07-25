@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4480460890153329963}
   m_Layer: 0
   m_Name: Autophobia
-  m_TagString: Enemy
+  m_TagString: Autophobia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

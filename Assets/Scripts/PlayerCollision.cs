@@ -47,15 +47,10 @@ public class PlayerCollision : MonoBehaviour
         }
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("Enemy")) {
-            if (hiding) {
-
-            }
-            else {
-                dead = true;
-                playerActions.allowMovement = false;
-                StartCoroutine(LoadNextScene());
-            }
+        if (collision.gameObject.CompareTag("Autophobia") || collision.gameObject.CompareTag("Scopophobia")) {
+            dead = true;
+            playerActions.allowMovement = false;
+            StartCoroutine(LoadNextScene());
         }
         if (collision.gameObject.CompareTag("Pipe")) {
             readyToRepair = true;

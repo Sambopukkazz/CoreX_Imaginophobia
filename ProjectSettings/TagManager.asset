@@ -4,10 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Pipe
   - Hideout
   - Door
+  - Scopophobia
+  - Autophobia
   layers:
   - Default
   - TransparentFX

@@ -17,6 +17,10 @@ public class AudioPlayer : MonoBehaviour
     {
         
     }
+    public void PlayAudioClip(AudioClip clip) {
+        Destroy(gameObject, clip.length + 0.5f);
+        speaker.PlayOneShot(clip);
+    }
 
     public void PlayFootStepSFX(List<AudioClip> stepsSFX) {
         speaker.maxDistance = 5;
