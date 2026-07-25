@@ -208,7 +208,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.22, y: 0.59}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
   skillCheckUI: {fileID: 327766221}
   blinkVFX: {fileID: 978007610}
   globalVolume: {fileID: 1562441693}
-  soundManager: {fileID: 0}
+  soundManager: {fileID: 198645219}
   moveSpeed: 2
   rayDistance: 2
   allowMovement: 1

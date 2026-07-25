@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
-using static UnityEditor.PlayerSettings;
+
 
 public class SoundManager : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private List<AudioClip> playSFX;
 
     private AudioPlayer speaker;
+    private GameObject speakerObject;
 
     void Start()
     {
@@ -24,13 +25,15 @@ public class SoundManager : MonoBehaviour
         
     }
     public void PlayLockerSFX(Vector2 pos,bool open) {
-        speaker = Instantiate(speakerPrefab, pos, Quaternion.identity).GetComponent<AudioPlayer>();
+        speakerObject = Instantiate(speakerPrefab, pos, Quaternion.identity);
+        speaker = speakerObject.GetComponent<AudioPlayer>();
         if(open) speaker.PlayAudioClip(lockerSFX[0]);
         else speaker.PlayAudioClip(lockerSFX[1]);
     }
 
-    public void PlayStepsClip(Vector2 pos) {
-        speaker = Instantiate(speakerPrefab, pos, Quaternion.identity).GetComponent<AudioPlayer>();
+    public void PlayStepsClip(Vector3 pos) {
+        speakerObject = Instantiate(speakerPrefab, pos, Quaternion.identity);
+        speaker = speakerObject.GetComponent<AudioPlayer>();
         speaker.PlayFootStepSFX(stepsSFX);
     }
 }

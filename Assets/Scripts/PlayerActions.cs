@@ -18,9 +18,10 @@ public class PlayerActions : MonoBehaviour
     private RaycastHit2D eyeSight;
     [SerializeField] private GameObject globalVolume;
     [SerializeField] private SoundManager soundManager;
-    private Vignette vignette;
+    private Vignette vignette;  
     private ColorAdjustments colorAdjustments;
     private FilmGrain filmGrain;
+    private Animator animator;
 	public float startLightRadius {  get; private set; }
 
 	[SerializeField] private float moveSpeed = 2f;
@@ -35,6 +36,8 @@ public class PlayerActions : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         SpotLight = GetComponentInChildren<Light2D>();
+        animator = GetComponent<Animator>();
+        soundManager = soundManager.GetComponent<SoundManager>();
         
         globalVolume.GetComponent<Volume>().profile.TryGet(out colorAdjustments);
         globalVolume.GetComponent<Volume>().profile.TryGet(out filmGrain);
@@ -46,6 +49,17 @@ public class PlayerActions : MonoBehaviour
     void Update()
     {
         float input = Input.GetAxisRaw("Horizontal");
+        int parameter;
+        switch (input) {
+            case > 0: parameter = 1; break;
+            case < 0: parameter = -1; break;
+            default: parameter = 0; break;
+        }
+        animator.SetInteger("input", parameter);
+
+        if (skillCheckUI.GetComponent<UIManager>().skillCheckIsActive) {
+            animator.SetTrigger("repair");
+        }
         if (allowMovement) {
             
             rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
@@ -130,4 +144,11 @@ public class PlayerActions : MonoBehaviour
 		filmGrain.active = false;
 		colorAdjustments.saturation.value = 0;
 	}
+
+    public void PlayStepsSound() {
+        if (soundManager == null) {
+            Debug.Log("null");
+        }
+        soundManager.PlayStepsClip(transform.position);
+    }
 }

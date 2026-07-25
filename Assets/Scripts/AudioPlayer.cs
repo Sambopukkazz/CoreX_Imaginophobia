@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
 {
-    private AudioSource speaker;
+    [SerializeField] private AudioSource speaker;
     private static int stepOrder;
     // Start is called before the first frame update
     void Start()
     {
-        
+        speaker = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
