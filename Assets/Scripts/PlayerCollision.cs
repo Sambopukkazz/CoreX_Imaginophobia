@@ -30,7 +30,6 @@ public class PlayerCollision : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (readyToHide && !hiding) {
-                Debug.Log("Hide");
                 hiding = true;
                 playerActions.Hide();
             }
@@ -73,7 +72,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Pipe")) {
-            readyToRepair = true;
+            readyToRepair = false;
             collision.transform.GetChild(0).gameObject.SetActive(false);
         }
         if (collision.gameObject.CompareTag("Hideout")) {

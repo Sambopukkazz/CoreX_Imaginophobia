@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     public bool skillCheckIsActive = false;
 
     [SerializeField] private PlayerActions playerActions;
+    [SerializeField] private PlayerCollision playerCollision;
 
     void Start()
     {
@@ -40,6 +41,7 @@ public class UIManager : MonoBehaviour
                 skillCheckIsActive = false;
                 skillCheckUI.SetActive(false);
                 playerActions.allowMovement = true;
+                playerCollision.readyToRepair = false;
             }
         }
     }

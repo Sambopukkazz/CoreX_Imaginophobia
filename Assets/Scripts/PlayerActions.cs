@@ -16,11 +16,14 @@ public class PlayerActions : MonoBehaviour
 
     private Rigidbody2D rb;
     private RaycastHit2D eyeSight;
-    [SerializeField] private GameObject globalVolume; 
+    [SerializeField] private GameObject globalVolume;
+    [SerializeField] private SoundManager soundManager;
     private Vignette vignette;
+    private ColorAdjustments colorAdjustments;
+    private FilmGrain filmGrain;
 
     [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float rayDistance = 5f;
+    [SerializeField] private float rayDistance = 2f;
     public bool allowMovement;
     
     public Light2D SpotLight { get; private set; }
@@ -31,6 +34,9 @@ public class PlayerActions : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         SpotLight = GetComponentInChildren<Light2D>();
+        
+        globalVolume.GetComponent<Volume>().profile.TryGet(out colorAdjustments);
+        globalVolume.GetComponent<Volume>().profile.TryGet(out filmGrain);
         globalVolume.GetComponent<Volume>().profile.TryGet(out vignette);
         allowMovement = true;
     }
@@ -41,33 +47,45 @@ public class PlayerActions : MonoBehaviour
         if (allowMovement) {
             
             rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
+        }
 
-            float rayDir;
-
-            switch(input) {
-                case >0:
-                    rayDir = 1;
-                    break;
-                case <0:
-                    rayDir = -1;
-                    break;
-                default:
-                    rayDir = 0;
-                    break;
-            }
-            RadiateRay(rayDir);
-        }        
+        float rayDir;
+        switch (input) {
+            case > 0:
+                rayDir = 1;
+                break;
+            case < 0:
+                rayDir = -1;
+                break;
+            default:
+                rayDir = 0;
+                break;
+        }
+        RadiateRay(rayDir);
     }
 
-    public void RuduceLightRadius(float amount) {
+    public void ChangeLightRadius(float amount) {
         SpotLight.pointLightOuterRadius -= amount;
+    }
+
+    public void ChangeGlobolVolume(float amount, float threshold) {
+        rayDistance = threshold;
+        colorAdjustments.saturation.value -=  amount / SpotLight.pointLightOuterRadius * 100;
+        if(SpotLight.pointLightOuterRadius < threshold) {
+            filmGrain.active = true;
+        }
+        else {
+            filmGrain.active = false;
+        }
     }
 
     private void RadiateRay(float rayDir) {
         eyeSight = Physics2D.Raycast(eyePos.transform.position, Vector2.right * rayDir, rayDistance, layerMask);
-        Debug.DrawRay(eyePos.transform.position, Vector2.right * rayDir * rayDistance, Color.yellow);
+        Debug.DrawRay(eyePos.transform.position, Vector2.right * rayDir * eyeSight.distance, Color.yellow);
 
         if (eyeSight.collider != null && eyeSight.collider.CompareTag("Enemy")) {
+            eyeSight.collider.GetComponent<FollowerController>().allowMovement = false;
+            Destroy(eyeSight.collider.gameObject, 1f);
             blinkVFX.Play("Blink");
         }
     }
@@ -79,7 +97,6 @@ public class PlayerActions : MonoBehaviour
         //transform.GetChild(0).gameObject.SetActive(false);
         vignette.active = true;
         zoomCam.SetActive(true);
-
     }
     public void GetOutOfHiding() {
         allowMovement = true;

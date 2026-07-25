@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectiveManager : MonoBehaviour
 {
+    [SerializeField] private GameObject brickPrefab;
+    [SerializeField] private GameObject autoEnemyPrefab;
     // Start is called before the first frame update
     void Start()
     {
