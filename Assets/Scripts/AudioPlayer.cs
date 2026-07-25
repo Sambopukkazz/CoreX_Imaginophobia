@@ -9,7 +9,6 @@ public class AudioPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speaker = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,8 +21,8 @@ public class AudioPlayer : MonoBehaviour
         speaker.PlayOneShot(clip);
     }
 
-    public void PlayFootStepSFX(List<AudioClip> stepsSFX) {
-        speaker.maxDistance = 5;
+    public void PlayFootStepSFX(List<AudioClip> stepsSFX, float maxDist) {
+        speaker.maxDistance = maxDist;
         if (stepOrder < stepsSFX.Count) {
             Destroy(gameObject, stepsSFX[stepOrder].length + 0.5f);
             speaker.PlayOneShot(stepsSFX[stepOrder++]);

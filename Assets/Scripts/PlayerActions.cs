@@ -86,7 +86,9 @@ public class PlayerActions : MonoBehaviour
 
     public void ChangeGlobolVolume(float amount, float threshold) {
         rayDistance = threshold;
-        colorAdjustments.saturation.value -=  amount / SpotLight.pointLightOuterRadius * 100;
+        if(colorAdjustments.saturation.value <= 0) {
+            colorAdjustments.saturation.value -= amount / SpotLight.pointLightOuterRadius * 100;
+        }
         if(SpotLight.pointLightOuterRadius < threshold) {
             filmGrain.active = true;
         }
@@ -146,9 +148,6 @@ public class PlayerActions : MonoBehaviour
 	}
 
     public void PlayStepsSound() {
-        if (soundManager == null) {
-            Debug.Log("null");
-        }
-        soundManager.PlayStepsClip(transform.position);
+        soundManager.PlayStepsClip(transform.position, 5f);
     }
 }

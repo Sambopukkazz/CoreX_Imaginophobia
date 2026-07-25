@@ -31,9 +31,9 @@ public class SoundManager : MonoBehaviour
         else speaker.PlayAudioClip(lockerSFX[1]);
     }
 
-    public void PlayStepsClip(Vector3 pos) {
+    public void PlayStepsClip(Vector3 pos, float maxDist) {
         speakerObject = Instantiate(speakerPrefab, pos, Quaternion.identity);
         speaker = speakerObject.GetComponent<AudioPlayer>();
-        speaker.PlayFootStepSFX(stepsSFX);
+        speaker.PlayFootStepSFX(stepsSFX, maxDist);
     }
 }
