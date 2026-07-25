@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowerController : MonoBehaviour
+public class AutophobiaEnemy : MonoBehaviour
 {
     private float moveSpeed = 2.5f;
-    [SerializeField] private GameObject player;
+    private GameObject player;
 
     private PlayerActions playerActions;
     public bool allowMovement = true;
     private float startLightRadius;
+    public bool dead;
     private float filmGrainActiveThreshold;
 
     void Start()
@@ -27,16 +28,18 @@ public class FollowerController : MonoBehaviour
         if (allowMovement) {
             gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, player.transform.position,input * moveSpeed * Time.deltaTime);
         }
-        if(Mathf.Abs(player.transform.position.x - gameObject.transform.position.x) <= playerActions.SpotLight.pointLightOuterRadius) {
-            playerActions.ChangeLightRadius(0.1f);
-            playerActions.ChangeGlobolVolume(0.1f, filmGrainActiveThreshold);
-        }
-        else {
-            if(playerActions.SpotLight.pointLightOuterRadius < startLightRadius  && (input < 0 || input > 0)) {
-                playerActions.ChangeLightRadius(-0.05f);
+        if (!dead) {
+            if (Mathf.Abs(player.transform.position.x - gameObject.transform.position.x) <= playerActions.SpotLight.pointLightOuterRadius) {
+                playerActions.ChangeLightRadius(0.1f);
+                playerActions.ChangeGlobolVolume(0.05f, filmGrainActiveThreshold);
             }
-            else if (input < 0 || input > 0) {
-                playerActions.ChangeGlobolVolume(-0.05f, filmGrainActiveThreshold);
+            else {
+                if (playerActions.SpotLight.pointLightOuterRadius < startLightRadius && (input < 0 || input > 0)) {
+                    playerActions.ChangeLightRadius(-0.05f);
+                }
+                else if (input < 0 || input > 0) {
+                    playerActions.ChangeGlobolVolume(-0.05f, filmGrainActiveThreshold);
+                }
             }
         }
     }

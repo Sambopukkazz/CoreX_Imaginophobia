@@ -21,8 +21,9 @@ public class PlayerActions : MonoBehaviour
     private Vignette vignette;
     private ColorAdjustments colorAdjustments;
     private FilmGrain filmGrain;
+	private float startLightRadius;
 
-    [SerializeField] private float moveSpeed = 2f;
+	[SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float rayDistance = 2f;
     public bool allowMovement;
     
@@ -39,6 +40,7 @@ public class PlayerActions : MonoBehaviour
         globalVolume.GetComponent<Volume>().profile.TryGet(out filmGrain);
         globalVolume.GetComponent<Volume>().profile.TryGet(out vignette);
         allowMovement = true;
+        startLightRadius = SpotLight.pointLightOuterRadius;
     }
 
     void Update()
@@ -84,9 +86,11 @@ public class PlayerActions : MonoBehaviour
         Debug.DrawRay(eyePos.transform.position, Vector2.right * rayDir * eyeSight.distance, Color.yellow);
 
         if (eyeSight.collider != null && eyeSight.collider.CompareTag("Enemy")) {
-            eyeSight.collider.GetComponent<FollowerController>().allowMovement = false;
+            eyeSight.collider.GetComponent<AutophobiaEnemy>().allowMovement = false;
             Destroy(eyeSight.collider.gameObject, 1f);
+            eyeSight.collider.gameObject.GetComponent<AutophobiaEnemy>().dead = true;
             blinkVFX.Play("Blink");
+            Invoke(nameof(ResetPostProcessing), 1f);
         }
     }
 
@@ -120,4 +124,10 @@ public class PlayerActions : MonoBehaviour
         rb.velocity = Vector2.zero;
         allowMovement = false;
     }
+
+    private void ResetPostProcessing() {
+		SpotLight.pointLightOuterRadius = startLightRadius;
+		filmGrain.active = false;
+		colorAdjustments.saturation.value = 0;
+	}
 }
