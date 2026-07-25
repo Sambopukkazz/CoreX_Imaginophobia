@@ -16,6 +16,7 @@ public class PlayerCollision : MonoBehaviour
     private bool hiding;
     private bool dead;
     private string killedBy;
+    private Collider2D collidedObj;
 
     public bool readyToHide;
     public bool readyToOpenDoor;
@@ -43,6 +44,7 @@ public class PlayerCollision : MonoBehaviour
             else if (readyToRepair && skillCheckUI.GetComponent<UIManager>().skillCheckIsActive == false) {
                 skillCheckUI.GetComponent<UIManager>().StartSkillCheck();
                 playerActions.RepairObjects(obj);
+                collidedObj.transform.GetChild(0).gameObject.SetActive(false);
             }
             else if (readyToOpenDoor) { 
                 LoadNextScene();
@@ -50,6 +52,7 @@ public class PlayerCollision : MonoBehaviour
         }
     }
     private void OnTriggerEnter2D(Collider2D collision) {
+        collidedObj = collision;
         if (collision.gameObject.CompareTag("Autophobia") || collision.gameObject.CompareTag("Scopophobia")) {
             dead = true;
             killedBy = collision.gameObject.tag;
@@ -66,7 +69,8 @@ public class PlayerCollision : MonoBehaviour
             readyToHide = true;
         }
         else if (collision.gameObject.CompareTag("Door")) {
-            
+            collision.transform.GetChild(0).gameObject.SetActive(true);
+            readyToOpenDoor = true;
         }
     }
 
@@ -80,7 +84,8 @@ public class PlayerCollision : MonoBehaviour
             collision.transform.GetChild(0).gameObject.SetActive(false);
         }
         else if (collision.gameObject.CompareTag("Door")) {
-
+            collision.transform.GetChild(0).gameObject.SetActive(false);
+            readyToOpenDoor = false;
         }
     }
 

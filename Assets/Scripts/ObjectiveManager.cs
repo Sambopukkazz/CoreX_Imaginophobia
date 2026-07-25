@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ObjectiveManager : MonoBehaviour
 {
-    [SerializeField] private GameObject brickPrefab;
-    [SerializeField] private GameObject autoEnemyPrefab;
-    // Start is called before the first frame update
+    [SerializeField] private GameObject autophobiaPrefab;
+    [SerializeField] private GameObject scopophobiaPrefab;
+
+    static int stage;
+    static int repairedObjectCount;
+    static int item;
     void Start()
     {
         
@@ -18,7 +21,11 @@ public class ObjectiveManager : MonoBehaviour
         
     }
 
-    void SpawnAutophobia() {
+    public void SpawnAutophobia(Vector2 pos) {
+        Instantiate(autophobiaPrefab, pos, Quaternion.identity);
+    }
 
+    public void SpawnScopophobia(Vector2 pos) {
+        Instantiate(autophobiaPrefab, pos, Quaternion.identity);
     }
 }

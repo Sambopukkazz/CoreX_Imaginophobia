@@ -116,6 +116,7 @@ public class PlayerActions : MonoBehaviour
     public void Hide() {
         //show hiding timer UI
         allowMovement = false;
+        rb.velocity = Vector2.zero;
         transform.GetComponent<SpriteRenderer>().enabled = false;
         soundManager.PlayLockerSFX(transform.position, true);
         vignette.active = true;

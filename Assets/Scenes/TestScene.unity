@@ -256,7 +256,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: -260663567, guid: fde1a6a200c88d34c89bb3eb0b3c2085, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5713,7 +5713,7 @@ GameObject:
   - component: {fileID: 1724000484}
   - component: {fileID: 1724000483}
   m_Layer: 0
-  m_Name: Follow Player Camera (1)
+  m_Name: Follow Player Zoom-out Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
