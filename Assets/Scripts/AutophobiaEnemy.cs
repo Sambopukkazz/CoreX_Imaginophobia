@@ -9,17 +9,15 @@ public class AutophobiaEnemy : MonoBehaviour
 
     private PlayerActions playerActions;
     public bool allowMovement = true;
-    private float startLightRadius;
     public bool dead;
     private float filmGrainActiveThreshold;
 
-    void Start()
-    {
+    void Start() {
         player = GameObject.FindWithTag("Player");
         playerActions = player.GetComponent<PlayerActions>();
-        startLightRadius = playerActions.SpotLight.pointLightOuterRadius;
-        filmGrainActiveThreshold = Random.Range(40f,60f);
-        filmGrainActiveThreshold = (filmGrainActiveThreshold / 100) * startLightRadius;
+
+        filmGrainActiveThreshold = Random.Range(40f, 60f);
+        filmGrainActiveThreshold = (filmGrainActiveThreshold / 100) * playerActions.startLightRadius;
     }
 
     void Update()
@@ -34,7 +32,7 @@ public class AutophobiaEnemy : MonoBehaviour
                 playerActions.ChangeGlobolVolume(0.05f, filmGrainActiveThreshold);
             }
             else {
-                if (playerActions.SpotLight.pointLightOuterRadius < startLightRadius && (input < 0 || input > 0)) {
+                if (playerActions.SpotLight.pointLightOuterRadius < playerActions.startLightRadius && (input < 0 || input > 0)) {
                     playerActions.ChangeLightRadius(-0.05f);
                 }
                 else if (input < 0 || input > 0) {

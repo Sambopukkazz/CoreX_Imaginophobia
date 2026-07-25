@@ -17,4 +17,8 @@ public class ObjectiveManager : MonoBehaviour
     {
         
     }
+
+    void SpawnAutophobia() {
+
+    }
 }

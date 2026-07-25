@@ -21,7 +21,7 @@ public class PlayerActions : MonoBehaviour
     private Vignette vignette;
     private ColorAdjustments colorAdjustments;
     private FilmGrain filmGrain;
-	private float startLightRadius;
+	public float startLightRadius {  get; private set; }
 
 	[SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float rayDistance = 2f;
