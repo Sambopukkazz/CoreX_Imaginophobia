@@ -15,10 +15,13 @@ public class PlayerCollision : MonoBehaviour
     private Slider hideTimer;
     private bool hiding;
     private bool dead;
+    private string killedBy;
 
     public bool readyToHide;
     public bool readyToOpenDoor;
     public bool readyToRepair;
+    public bool readyToElec;
+    public
 
     void Start()
     {
@@ -39,7 +42,7 @@ public class PlayerCollision : MonoBehaviour
             }
             else if (readyToRepair && skillCheckUI.GetComponent<UIManager>().skillCheckIsActive == false) {
                 skillCheckUI.GetComponent<UIManager>().StartSkillCheck();
-                playerActions.RepairObjects();
+                playerActions.RepairObjects("");
             }
             else if (readyToOpenDoor) { 
                 LoadNextScene();
@@ -49,10 +52,11 @@ public class PlayerCollision : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Autophobia") || collision.gameObject.CompareTag("Scopophobia")) {
             dead = true;
+            killedBy = collision.gameObject.tag;
             playerActions.allowMovement = false;
             StartCoroutine(LoadNextScene());
         }
-        if (collision.gameObject.CompareTag("Pipe")) {
+        if (collision.gameObject.CompareTag("Pipe") || collision.gameObject.CompareTag("Electric")) {
             readyToRepair = true;
             collision.transform.GetChild(0).gameObject.SetActive(true);
         }
@@ -66,7 +70,7 @@ public class PlayerCollision : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("Pipe")) {
+        if (collision.gameObject.CompareTag("Pipe") || collision.gameObject.CompareTag("Electric")) {
             readyToRepair = false;
             collision.transform.GetChild(0).gameObject.SetActive(false);
         }
@@ -83,8 +87,11 @@ public class PlayerCollision : MonoBehaviour
         transitionUI.GetComponent<Animator>().SetTrigger("ChangeScene");
         yield return new WaitForSeconds(1f);
         if (dead) {
-            guideTxt.text = "Try looking at the enemy on the right time!";
+            if(killedBy == "Autophobia") {
+                guideTxt.text = "Try looking at the enemy on the right time!";
+            }
             //Load Current Scene Again and try reset each value (restart mission on that scene)
+            yield return new WaitForSeconds(2f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else {

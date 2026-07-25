@@ -16,6 +16,14 @@ public class AudioPlayer : MonoBehaviour
     {
         
     }
+
+    public GameObject PlayLoopClip(AudioClip clip) {
+        speaker.loop = true;
+        speaker.clip = clip;
+        speaker.Play();
+        return gameObject;
+    }
+
     public void PlayAudioClip(AudioClip clip) {
         Destroy(gameObject, clip.length + 0.5f);
         speaker.PlayOneShot(clip);

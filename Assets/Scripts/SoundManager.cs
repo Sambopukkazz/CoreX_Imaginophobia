@@ -10,10 +10,13 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private List<AudioClip> stepsSFX;
     [SerializeField] private List<AudioClip> lockerSFX;
     [SerializeField] private List<AudioClip> pipeSFX;
-    [SerializeField] private List<AudioClip> playSFX;
+    [SerializeField] private List<AudioClip> elecSFX;
+
+    [SerializeField] private UIManager uiManager;
 
     private AudioPlayer speaker;
     private GameObject speakerObject;
+    private GameObject loopSpeaker;
 
     void Start()
     {
@@ -22,8 +25,31 @@ public class SoundManager : MonoBehaviour
 
     void Update()
     {
+        if (uiManager.skillCheckIsActive == false && loopSpeaker != null) {
+            Destroy(loopSpeaker);
+        }
+    }
+    public void PlayRepairingClip(Vector2 pos, string obj) {
+        speakerObject = Instantiate(speakerPrefab, pos, Quaternion.identity);
+        speaker = speakerObject.GetComponent<AudioPlayer>();
+        if(obj == "pipe") {
+            loopSpeaker = speaker.PlayLoopClip(pipeSFX[1]);
+        }
+        else {
+
+        }
         
     }
+
+    public void PlaySingleSound(Vector2 pos, string sound,int index) {
+        speakerObject = Instantiate(speakerPrefab, pos, Quaternion.identity);
+        speaker = speakerObject.GetComponent<AudioPlayer>();
+        if(sound == "pipe") {
+            speaker.PlayAudioClip(pipeSFX[index]);
+        }
+        
+    }
+
     public void PlayLockerSFX(Vector2 pos,bool open) {
         speakerObject = Instantiate(speakerPrefab, pos, Quaternion.identity);
         speaker = speakerObject.GetComponent<AudioPlayer>();

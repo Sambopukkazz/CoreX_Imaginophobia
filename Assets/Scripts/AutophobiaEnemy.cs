@@ -21,7 +21,7 @@ public class AutophobiaEnemy : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
 
         filmGrainActiveThreshold = Random.Range(40f, 60f);
-        filmGrainActiveThreshold = (filmGrainActiveThreshold / 100) * playerActions.startLightRadius;
+        filmGrainActiveThreshold = ((filmGrainActiveThreshold / 100) * playerActions.startLightRadius) + 0.5f;
     }
 
     void Update()
