@@ -3682,7 +3682,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5710,7 +5710,7 @@ Transform:
   m_GameObject: {fileID: 1343766033}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.9899144, y: -1.4794961, z: 0}
+  m_LocalPosition: {x: -8.989914, y: -1.4794961, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5983,6 +5983,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 782632e6dbabf0847ae56632a3f65cd0, type: 3}
   - {fileID: 8300000, guid: ac987ac5ffe5ff14ea0c6ba3d00e9216, type: 3}
   - {fileID: 8300000, guid: e7204aa9b7aaa7e4c91b17c084cadb55, type: 3}
+  autophobiaIndicator: {fileID: 0}
+  scopophobiaIndicator: {fileID: 0}
   uiManager: {fileID: 1808248825}
 --- !u!4 &1369226137
 Transform:
@@ -6241,6 +6243,7 @@ MonoBehaviour:
   blinkVFX: {fileID: 692927857}
   globalVolume: {fileID: 1962882058}
   soundManager: {fileID: 1369226136}
+  indicatorPlayed: 0
   moveSpeed: 2
   rayDistance: 2
   allowMovement: 1
@@ -6745,7 +6748,7 @@ Tilemap:
   m_GameObject: {fileID: 1614538315}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: -8, y: -1, z: 0}
+  - first: {x: -9, y: -1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 5
@@ -6895,7 +6898,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -8, y: 0, z: 0}
+  - first: {x: -9, y: 0, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 4
@@ -7107,8 +7110,8 @@ Tilemap:
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -8, y: -1, z: 0}
-  m_Size: {x: 15, y: 4, z: 1}
+  m_Origin: {x: -9, y: -1, z: 0}
+  m_Size: {x: 16, y: 4, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -7794,8 +7797,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.036314458, y: 7.246083}
-      - {x: -8.963686, y: 7.0935736}
-      - {x: -8.920547, y: -2.9932134}
+      - {x: -9.029765, y: 7.0803576}
+      - {x: -9.054661, y: -3.0334477}
       - {x: 8.9860935, y: -3.2270193}
       - {x: 8.978496, y: 7.350349}
   m_UseDelaunayMesh: 0

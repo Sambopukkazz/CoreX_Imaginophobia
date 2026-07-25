@@ -11,6 +11,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private List<AudioClip> lockerSFX;
     [SerializeField] private List<AudioClip> pipeSFX;
     [SerializeField] private List<AudioClip> elecSFX;
+    [SerializeField] private AudioClip autophobiaIndicator;
+    [SerializeField] private AudioClip scopophobiaIndicator;
 
     [SerializeField] private UIManager uiManager;
 
@@ -49,7 +51,13 @@ public class SoundManager : MonoBehaviour
         else if(sound == "Electric") {
             speaker.PlayAudioClip(elecSFX[index]);
         }
-        
+        else if(sound == "Auto") {
+            speaker.PlayAudioClip(autophobiaIndicator);
+        }
+        else if (sound == "Scopo") {
+            speaker.PlayAudioClip(scopophobiaIndicator);
+        }
+
     }
 
     public void PlayLockerSFX(Vector2 pos,bool open) {

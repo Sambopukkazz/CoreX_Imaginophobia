@@ -17,10 +17,12 @@ public class PlayerCollision : MonoBehaviour
     private bool dead;
     private string killedBy;
     private Collider2D collidedObj;
+    private Scene lastScene;
 
     public bool readyToHide;
     public bool readyToOpenDoor;
     public bool readyToRepair;
+    public bool readyToClimb;
 
     public string obj;
 
@@ -46,8 +48,19 @@ public class PlayerCollision : MonoBehaviour
                 playerActions.RepairObjects(obj);
                 collidedObj.transform.GetChild(0).gameObject.SetActive(false);
             }
-            else if (readyToOpenDoor) { 
-                LoadNextScene();
+            else if (readyToOpenDoor) {
+                StartCoroutine(LoadNextScene());
+            }
+            else if (readyToClimb) {
+                if(SceneManager.GetActiveScene().name == "Sewer") {
+                    if(collidedObj.name == "Ladder Hitbox") {
+                        transform.position = new Vector3(15.5f, -22.5f, 0f);
+                    }
+                    else if (collidedObj.name == "Ladder Hitbox 2") {
+                        transform.position = new Vector3(15.5f, -0.5f, 0f);
+                    }
+                }
+                readyToClimb = false;
             }
         }
     }
@@ -72,6 +85,10 @@ public class PlayerCollision : MonoBehaviour
             collision.transform.GetChild(0).gameObject.SetActive(true);
             readyToOpenDoor = true;
         }
+        else if (collision.gameObject.CompareTag("Ladder")) {
+            collision.transform.GetChild(0).gameObject.SetActive(true);
+            readyToClimb = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
@@ -87,22 +104,62 @@ public class PlayerCollision : MonoBehaviour
             collision.transform.GetChild(0).gameObject.SetActive(false);
             readyToOpenDoor = false;
         }
+        else if (collision.gameObject.CompareTag("Ladder")) {
+            collision.transform.GetChild(0).gameObject.SetActive(false);
+            readyToClimb = false;
+        }
     }
 
     IEnumerator LoadNextScene() {
+        
         transitionUI.GetComponent<Animator>().SetTrigger("ChangeScene");
         yield return new WaitForSeconds(1f);
         if (dead) {
-            if(killedBy == "Autophobia") {
+            if (killedBy == "Autophobia") {
                 guideTxt.text = "Try looking at the enemy on the right time!";
+
+                yield return new WaitForSeconds(2f);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
-            //Load Current Scene Again and try reset each value (restart mission on that scene)
-            yield return new WaitForSeconds(2f);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         else {
-            //Load Next Scene
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            lastScene = SceneManager.GetActiveScene();
+            if(SceneManager.GetActiveScene().name == "ER1") {
+                SceneManager.LoadScene("Sewer");
+            }
+            else if(SceneManager.GetActiveScene().name == "Sewer") {
+                if(collidedObj.name == "Door Hitbox") {
+                    SceneManager.LoadScene("ER2");
+                }
+                else if(collidedObj.name == "Door Hitbox 2") {
+                    SceneManager.LoadScene("ER1");
+                }
+                else if (collidedObj.name == "Door Hitbox 3") {
+                    SceneManager.LoadScene("ER3");
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "ER3") {
+                if (collidedObj.name == "Door Hitbox 2") {
+                    SceneManager.LoadScene("Storage");
+                }
+                else if (collidedObj.name == "Door Hitbox") {
+                    SceneManager.LoadScene("Sewer");
+                }
+                else if (collidedObj.name == "Door Hitbox 3") {
+                    SceneManager.LoadScene("Sewer 2nd spot");
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "Sewer 2nd spot") {
+                if (collidedObj.name == "Door Hitbox 2") {
+                    SceneManager.LoadScene("ER2");
+                }
+                else if (collidedObj.name == "Door Hitbox") {
+                    SceneManager.LoadScene("ER3");
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "Storage") {
+                SceneManager.LoadScene("ER3");
+            }
         }
     }
 }

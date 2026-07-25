@@ -22,6 +22,7 @@ public class PlayerActions : MonoBehaviour
     private ColorAdjustments colorAdjustments;
     private FilmGrain filmGrain;
     private Animator animator;
+    public bool indicatorPlayed;
 	public float startLightRadius {  get; private set; }
 
 	[SerializeField] private float moveSpeed = 2f;
@@ -88,12 +89,23 @@ public class PlayerActions : MonoBehaviour
     }
 
     public void ChangeGlobolVolume(float amount, float threshold) {
-        rayDistance = threshold;
+        if (threshold > 1) {
+            rayDistance = threshold;
+        }
         if((colorAdjustments.saturation.value - amount / SpotLight.pointLightOuterRadius * 100) <= 0) {
             colorAdjustments.saturation.value -= amount / SpotLight.pointLightOuterRadius * 100;
         }
         if(SpotLight.pointLightOuterRadius < threshold) {
             filmGrain.active = true;
+            if (!indicatorPlayed) {
+                PlayTurnBackIndicator();
+            }
+        }
+        else if (SpotLight.pointLightOuterRadius < rayDistance) {
+            filmGrain.active = true;
+            if (!indicatorPlayed) {
+                PlayTurnBackIndicator();
+            }
         }
         else {
             filmGrain.active = false;
@@ -101,6 +113,7 @@ public class PlayerActions : MonoBehaviour
     }
 
     private void RadiateRay(float rayDir) {
+        if (rayDistance <= 1f) rayDistance = 2f;
         eyeSight = Physics2D.Raycast(eyePos.transform.position, Vector2.right * rayDir, rayDistance, layerMask);
         Debug.DrawRay(eyePos.transform.position, Vector2.right * rayDir * eyeSight.distance, Color.yellow);
 
@@ -177,5 +190,10 @@ public class PlayerActions : MonoBehaviour
 
     public void PlayRepairCompleteSound(string obj) {
         soundManager.PlaySingleSound(transform.position, obj, 0);
+    }
+
+    public void PlayTurnBackIndicator() {
+        soundManager.PlaySingleSound(transform.position,"Auto",0);
+        indicatorPlayed = true;
     }
 }

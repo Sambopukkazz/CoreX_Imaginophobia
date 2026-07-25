@@ -6,6 +6,7 @@ public class ObjectiveManager : MonoBehaviour
 {
     [SerializeField] private GameObject autophobiaPrefab;
     [SerializeField] private GameObject scopophobiaPrefab;
+    [SerializeField] private List<GameObject> spawnPos;
 
     static int stage;
     static int repairedObjectCount;

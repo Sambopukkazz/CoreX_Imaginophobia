@@ -436,7 +436,7 @@ Transform:
   m_GameObject: {fileID: 32039282}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: 15.5, y: 2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4479,7 +4479,7 @@ Transform:
   m_GameObject: {fileID: 296885956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: 15.5, y: 2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24226,7 +24226,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -34118,6 +34118,7 @@ MonoBehaviour:
   blinkVFX: {fileID: 1278898662}
   globalVolume: {fileID: 1468570157}
   soundManager: {fileID: 2016843023}
+  indicatorPlayed: 0
   moveSpeed: 2
   rayDistance: 2
   allowMovement: 1
@@ -34138,6 +34139,7 @@ MonoBehaviour:
   readyToHide: 0
   readyToOpenDoor: 0
   readyToRepair: 0
+  readyToClimb: 0
   obj: 
 --- !u!50 &1593781491
 Rigidbody2D:
@@ -34273,7 +34275,7 @@ Transform:
   m_GameObject: {fileID: 1593781486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 15.5, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39567,6 +39569,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 782632e6dbabf0847ae56632a3f65cd0, type: 3}
   - {fileID: 8300000, guid: ac987ac5ffe5ff14ea0c6ba3d00e9216, type: 3}
   - {fileID: 8300000, guid: e7204aa9b7aaa7e4c91b17c084cadb55, type: 3}
+  autophobiaIndicator: {fileID: 0}
+  scopophobiaIndicator: {fileID: 0}
   uiManager: {fileID: 1385854072}
 --- !u!4 &2016843024
 Transform:

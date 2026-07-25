@@ -8,11 +8,13 @@ public class ScopophobiaEnemy : MonoBehaviour
     private float moveDir;
     [SerializeField] private float moveSpeed = 50f;
     [SerializeField] private float waitSeconds = 8f;
+    private SoundManager soundManager;
     private bool startMoving;
     // Start is called before the first frame update
     void Start()
     {
-        //Play Sound
+        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
+        soundManager.PlaySingleSound(transform.position,"Scopo",0);
         player = GameObject.FindWithTag("Player");
         if(player.transform.position.x > gameObject.transform.position.x) {
             moveDir = 1f;

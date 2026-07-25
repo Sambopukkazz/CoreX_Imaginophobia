@@ -37,7 +37,14 @@ public class AutophobiaEnemy : MonoBehaviour
         animator.SetInteger("input", parameter);
 
         if (allowMovement) {
-            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, player.transform.position,input * moveSpeed * Time.deltaTime);
+            if(player.transform.position.x > gameObject.transform.position.x) {
+                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, player.transform.position, input * moveSpeed * Time.deltaTime);
+            }
+            else if (player.transform.position.x < gameObject.transform.position.x) {
+                input *= -1f;
+                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, player.transform.position, input * moveSpeed * Time.deltaTime);
+            }
+            
         }
         if (!dead) {
             if (Mathf.Abs(player.transform.position.x - gameObject.transform.position.x) <= playerActions.SpotLight.pointLightOuterRadius - 0.5f) {
