@@ -131,6 +131,7 @@ public class PlayerActions : MonoBehaviour
         allowMovement = false;
         rb.velocity = Vector2.zero;
         transform.GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetComponent<BoxCollider2D>().enabled = false;
         soundManager.PlayLockerSFX(transform.position, true);
         vignette.active = true;
         zoomCam.SetActive(true);
@@ -138,6 +139,7 @@ public class PlayerActions : MonoBehaviour
     public void GetOutOfHiding() {
         allowMovement = true;
         transform.GetComponent<SpriteRenderer>().enabled = true;
+        transform.GetComponent<BoxCollider2D>().enabled = true;
         soundManager.PlayLockerSFX(transform.position, false);
         vignette.active = false;
         zoomCam.SetActive(false);

@@ -17,7 +17,7 @@ public class PlayerCollision : MonoBehaviour
     private bool dead;
     private string killedBy;
     private Collider2D collidedObj;
-    private Scene lastScene;
+    public static string lastScene;
 
     public bool readyToHide;
     public bool readyToOpenDoor;
@@ -30,6 +30,34 @@ public class PlayerCollision : MonoBehaviour
     {
         playerActions = GetComponent<PlayerActions>();
         guideTxt = transitionUI.GetComponentInChildren<TextMeshProUGUI>();
+
+        if (lastScene == "ER1" && SceneManager.GetActiveScene().name == "Sewer") {
+            transform.position = new Vector2(11.5f, -0.5f);
+        }
+        else if(lastScene == "Sewer" && SceneManager.GetActiveScene().name == "ER2") {
+            transform.position = new Vector2(-8.25f, -0.5f);
+        }
+        else if (lastScene == "Sewer" && SceneManager.GetActiveScene().name == "ER3") {
+            transform.position = new Vector2(-8.25f, -0.5f);
+        }
+        else if (lastScene == "ER2" && SceneManager.GetActiveScene().name == "Sewer 2nd spot") {
+            transform.position = new Vector2(4.5f, -0.5f);
+        }
+        else if (lastScene == "ER2" && SceneManager.GetActiveScene().name == "Sewer") {
+            transform.position = new Vector2(-14.5f, -0.5f);
+        }
+        else if (lastScene == "ER3" && SceneManager.GetActiveScene().name == "Sewer") {
+            transform.position = new Vector2(-9.5f, -22.5f);
+        }
+        else if (lastScene == "ER3" && SceneManager.GetActiveScene().name == "Sewer 2nd spot") {
+            transform.position = new Vector2(-2.5f, -0.5f);
+        }
+        else if (lastScene == "Sewer 2nd spot" && SceneManager.GetActiveScene().name == "ER2") {
+            transform.position = new Vector2(8.25f, -0.5f);
+        }
+        else if (lastScene == "Sewer 2nd spot" && SceneManager.GetActiveScene().name == "ER3") {
+            transform.position = new Vector2(8.25f, -0.5f);
+        }
     }
 
     void Update()
@@ -123,9 +151,14 @@ public class PlayerCollision : MonoBehaviour
             }
         }
         else {
-            lastScene = SceneManager.GetActiveScene();
+            lastScene = SceneManager.GetActiveScene().name;
             if(SceneManager.GetActiveScene().name == "ER1") {
-                SceneManager.LoadScene("Sewer");
+                if (collidedObj.name == "Door Hitbox") {
+                    SceneManager.LoadScene("Sewer");
+                }
+                else if(collidedObj.name == "End Hitbox") {
+                    GameObject.Find("Follow Player Zoom-out Camera").SetActive(true);
+                }
             }
             else if(SceneManager.GetActiveScene().name == "Sewer") {
                 if(collidedObj.name == "Door Hitbox") {
@@ -136,6 +169,14 @@ public class PlayerCollision : MonoBehaviour
                 }
                 else if (collidedObj.name == "Door Hitbox 3") {
                     SceneManager.LoadScene("ER3");
+                }
+            }
+            else if (SceneManager.GetActiveScene().name == "ER2") {
+                if (collidedObj.name == "Door Hitbox 2") {
+                    SceneManager.LoadScene("Sewer 2nd spot");
+                }
+                else if (collidedObj.name == "Door Hitbox") {
+                    SceneManager.LoadScene("Sewer");
                 }
             }
             else if (SceneManager.GetActiveScene().name == "ER3") {
