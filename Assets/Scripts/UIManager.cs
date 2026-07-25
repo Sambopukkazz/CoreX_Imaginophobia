@@ -68,9 +68,11 @@ public class UIManager : MonoBehaviour
 
         if (needleAngle >= fillZoneStartAngle && needleAngle <= fillZoneEndAngle) {
             progressBar.value += 0.2f;
+            playerActions.PlayPipeSkillCheckSound(true);
         }
         else {
             progressBar.value -= 0.25f;
+            playerActions.PlayPipeSkillCheckSound(false);
         }
 
         rotationSpeed *= -1f;

@@ -86,7 +86,7 @@ public class PlayerActions : MonoBehaviour
 
     public void ChangeGlobolVolume(float amount, float threshold) {
         rayDistance = threshold;
-        if(colorAdjustments.saturation.value <= 0) {
+        if((colorAdjustments.saturation.value - amount / SpotLight.pointLightOuterRadius * 100) <= 0) {
             colorAdjustments.saturation.value -= amount / SpotLight.pointLightOuterRadius * 100;
         }
         if(SpotLight.pointLightOuterRadius < threshold) {
@@ -101,7 +101,7 @@ public class PlayerActions : MonoBehaviour
         eyeSight = Physics2D.Raycast(eyePos.transform.position, Vector2.right * rayDir, rayDistance, layerMask);
         Debug.DrawRay(eyePos.transform.position, Vector2.right * rayDir * eyeSight.distance, Color.yellow);
 
-        if (eyeSight.collider != null && eyeSight.collider.CompareTag("Enemy")) {
+        if (eyeSight.collider != null && eyeSight.collider.CompareTag("Autophobia")) {
             eyeSight.collider.GetComponent<AutophobiaEnemy>().allowMovement = false;
             Destroy(eyeSight.collider.gameObject, 1f);
             eyeSight.collider.gameObject.GetComponent<AutophobiaEnemy>().dead = true;
@@ -114,14 +114,14 @@ public class PlayerActions : MonoBehaviour
         //show hiding timer UI
         allowMovement = false;
         transform.GetComponent<SpriteRenderer>().enabled = false;
-        //transform.GetChild(0).gameObject.SetActive(false);
+        soundManager.PlayLockerSFX(transform.position, true);
         vignette.active = true;
         zoomCam.SetActive(true);
     }
     public void GetOutOfHiding() {
         allowMovement = true;
         transform.GetComponent<SpriteRenderer>().enabled = true;
-        //transform.GetChild(0).gameObject.SetActive(true);
+        soundManager.PlayLockerSFX(transform.position, false);
         vignette.active = false;
         zoomCam.SetActive(false);
     }
@@ -136,7 +136,8 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    public void RepairObjects() {
+    public void RepairObjects(string obj) {
+        soundManager.PlayRepairingClip(transform.position, obj);
         rb.velocity = Vector2.zero;
         allowMovement = false;
     }
@@ -149,5 +150,24 @@ public class PlayerActions : MonoBehaviour
 
     public void PlayStepsSound() {
         soundManager.PlayStepsClip(transform.position, 5f);
+    }
+
+    public void PlayPipeSkillCheckSound(bool success) {
+        if(success) {
+            soundManager.PlaySingleSound(transform.position, "pipe", 2);
+        }
+        else {
+            soundManager.PlaySingleSound(transform.position, "pipe", 3);
+        }
+        
+    }
+    public void PlayElecSkillCheckSound(bool success) {
+        if (success) {
+            soundManager.PlaySingleSound(transform.position, "elec", 2);
+        }
+        else {
+            soundManager.PlaySingleSound(transform.position, "elec", 3);
+        }
+
     }
 }
