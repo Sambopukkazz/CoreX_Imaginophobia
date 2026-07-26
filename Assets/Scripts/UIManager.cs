@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
                 skillCheckUI.SetActive(false);
                 playerActions.allowMovement = true;
                 playerCollision.readyToRepair = false;
+                ObjectiveManager.repairedObjectCount++;
             }
         }
     }

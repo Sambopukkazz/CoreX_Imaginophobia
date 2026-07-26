@@ -9,6 +9,8 @@ public class PlayerCollision : MonoBehaviour
 {
     [SerializeField] private GameObject skillCheckUI;
     [SerializeField] private GameObject transitionUI;
+    [SerializeField] private GameObject zoomOutCam;
+    [SerializeField] private DialogueManager dialogueManager;
 
     private TextMeshProUGUI guideTxt;
     private PlayerActions playerActions;
@@ -16,7 +18,7 @@ public class PlayerCollision : MonoBehaviour
     private bool hiding;
     private bool dead;
     private string killedBy;
-    private Collider2D collidedObj;
+    public Collider2D collidedObj;
     public static string lastScene;
 
     public bool readyToHide;
@@ -77,7 +79,16 @@ public class PlayerCollision : MonoBehaviour
                 collidedObj.transform.GetChild(0).gameObject.SetActive(false);
             }
             else if (readyToOpenDoor) {
-                StartCoroutine(LoadNextScene());
+                if (collidedObj.name == "End Hitbox") {
+                    if(ObjectiveManager.repairedObjectCount == 9) {
+                        StartCoroutine(LoadNextScene());
+                    }
+                    else {
+                        dialogueManager.dialogue = "You feel obligated to not exit.";
+                    }
+                }
+                else StartCoroutine(LoadNextScene());
+
             }
             else if (readyToClimb) {
                 if(SceneManager.GetActiveScene().name == "Sewer") {
@@ -139,15 +150,28 @@ public class PlayerCollision : MonoBehaviour
     }
 
     IEnumerator LoadNextScene() {
-        
-        transitionUI.GetComponent<Animator>().SetTrigger("ChangeScene");
+        if(collidedObj.name != "End Hitbox") {
+            transitionUI.GetComponent<Animator>().SetTrigger("ChangeScene");
+        }
         yield return new WaitForSeconds(1f);
         if (dead) {
             if (killedBy == "Autophobia") {
-                guideTxt.text = "Try looking at the enemy on the right time!";
+                guideTxt.text = "You have autophobia, don’t you?";
 
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(5f);
+
+                guideTxt.text = "Listen closely… You never look back, do you?";
+
+                yield return new WaitForSeconds(5f);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            else if (killedBy == "Scopophobia") {
+                guideTxt.text = "Scopophobia? You don’t like being watched, do you?";
+                yield return new WaitForSeconds(5f);
+                guideTxt.text = "Doesn’t it make you want to hide?";
+                yield return new WaitForSeconds(5f);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
             }
         }
         else {
@@ -157,7 +181,21 @@ public class PlayerCollision : MonoBehaviour
                     SceneManager.LoadScene("Sewer");
                 }
                 else if(collidedObj.name == "End Hitbox") {
-                    GameObject.Find("Follow Player Zoom-out Camera").SetActive(true);
+                    transitionUI.transform.GetChild(0).gameObject.SetActive(false);
+                    zoomOutCam.gameObject.SetActive(true);
+                    transitionUI.GetComponent<Animator>().Play("FadeOut");
+                    yield return new WaitForSeconds(5f);
+                    guideTxt.text = "You can only pray that it’s over";
+                    yield return new WaitForSeconds(5f);
+                    guideTxt.text = "Stepping into the light, would you assume that the darkness had merely given shape to something that was never there to begin with?";
+                    yield return new WaitForSeconds(5f);
+                    guideTxt.text = "Had the darkness birthed a horror that the light could only beg you to dismiss?";
+                    yield return new WaitForSeconds(5f);
+                    guideTxt.text = "...";
+                    yield return new WaitForSeconds(5f);
+                    guideTxt.text = "You could never say for sure.";
+                    yield return new WaitForSeconds(5f);
+                    guideTxt.text = "";
                 }
             }
             else if(SceneManager.GetActiveScene().name == "Sewer") {

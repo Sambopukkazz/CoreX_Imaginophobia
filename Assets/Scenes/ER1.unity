@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Intensity: 0.1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000972f0c979b274b83
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2789,6 +2789,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillCheckUI: {fileID: 1852759579}
   transitionUI: {fileID: 1091859186}
+  zoomOutCam: {fileID: 219325747}
+  dialogueManager: {fileID: 1852759585}
+  collidedObj: {fileID: 0}
   readyToHide: 0
   readyToOpenDoor: 0
   readyToRepair: 0
@@ -4322,7 +4325,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000972f0c979b274b83
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -4406,7 +4409,7 @@ MonoBehaviour:
   m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000972f0c979b274b83
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -6945,7 +6948,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000972f0c979b274b83
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -8390,6 +8393,7 @@ GameObject:
   - component: {fileID: 1852759583}
   - component: {fileID: 1852759582}
   - component: {fileID: 1852759580}
+  - component: {fileID: 1852759585}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -8500,6 +8504,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1852759585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852759579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ba3506982f16443bbe20e9a12185cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textPanel: {fileID: 314791979}
+  dialogue: 
 --- !u!1 &1862229951
 GameObject:
   m_ObjectHideFlags: 0
@@ -8784,6 +8802,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2036811496}
+  - component: {fileID: 2036811497}
   m_Layer: 0
   m_Name: Objective Manager
   m_TagString: Untagged
@@ -8806,6 +8825,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2036811497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036811495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27129d0c860009458615a241f800116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autophobiaPrefab: {fileID: 2911449130889717178, guid: c8aa68a91b36c6c468c404b4dc6ee42b, type: 3}
+  scopophobiaPrefab: {fileID: 1929650468111132526, guid: 6d1e4ad3101c33445af29c087bfc4b2d, type: 3}
+  spawnPos: []
+  playerCollision: {fileID: 355296880}
+  uiManager: {fileID: 1852759580}
+  collision: {fileID: 0}
 --- !u!1 &2060877732
 GameObject:
   m_ObjectHideFlags: 0
