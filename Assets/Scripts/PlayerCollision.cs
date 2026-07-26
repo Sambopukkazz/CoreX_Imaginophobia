@@ -25,6 +25,7 @@ public class PlayerCollision : MonoBehaviour
     public bool readyToOpenDoor;
     public bool readyToRepair;
     public bool readyToClimb;
+    public bool readyToCollectItem;
 
     public string obj;
 
@@ -87,6 +88,14 @@ public class PlayerCollision : MonoBehaviour
                         dialogueManager.dialogue = "You feel obligated to not exit.";
                     }
                 }
+                else if (collidedObj.name == "Door Hitbox" && SceneManager.GetActiveScene().name == "Sewer") {
+                    if(ObjectiveManager.itemCount == 1) {
+                        StartCoroutine(LoadNextScene());
+                    }
+                    else {
+                        dialogueManager.dialogue = "The door is locked. Maybe there’s something underneath the sewer.";
+                    }
+                }
                 else StartCoroutine(LoadNextScene());
 
             }
@@ -100,6 +109,11 @@ public class PlayerCollision : MonoBehaviour
                     }
                 }
                 readyToClimb = false;
+            }
+            else if (readyToCollectItem) {
+                ObjectiveManager.itemCount++;
+                dialogueManager.dialogue = "You got a key.";
+                readyToCollectItem = false;
             }
         }
     }
@@ -128,6 +142,10 @@ public class PlayerCollision : MonoBehaviour
             collision.transform.GetChild(0).gameObject.SetActive(true);
             readyToClimb = true;
         }
+        else if (collision.gameObject.CompareTag("Item")) {
+            collision.transform.GetChild(0).gameObject.SetActive(true);
+            readyToCollectItem = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
@@ -146,6 +164,10 @@ public class PlayerCollision : MonoBehaviour
         else if (collision.gameObject.CompareTag("Ladder")) {
             collision.transform.GetChild(0).gameObject.SetActive(false);
             readyToClimb = false;
+        }
+        else if (collision.gameObject.CompareTag("Item")) {
+            collision.transform.GetChild(0).gameObject.SetActive(false);
+            readyToCollectItem = false;
         }
     }
 

@@ -10,12 +10,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image needle;
     [SerializeField] private Image fillZone;
     [SerializeField] private Slider progressBar;
+    [SerializeField] private GameObject map;
 
     private float rotationSpeed = 200f;
     private float currentAngle = 0f;
     private float fillZoneStartAngle = 0f;
     private float fillZoneEndAngle = 0f;
 
+    private bool toggleMap;
     public bool skillCheckIsActive = false;
 
     [SerializeField] private PlayerActions playerActions;
@@ -28,6 +30,15 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.M)) {
+            if (toggleMap) {
+                toggleMap = false;  
+            }
+            else if (!toggleMap) {
+                toggleMap = true;
+            }
+            map.SetActive(toggleMap);
+        }
         if (skillCheckIsActive) { 
             currentAngle += rotationSpeed * Time.deltaTime;
             needle.rectTransform.rotation = Quaternion.Euler(0f, 0f, -currentAngle);
