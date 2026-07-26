@@ -30,15 +30,15 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.M)) {
-            if (toggleMap) {
-                toggleMap = false;  
-            }
-            else if (!toggleMap) {
-                toggleMap = true;
-            }
-            map.SetActive(toggleMap);
-        }
+        //if(Input.GetKeyDown(KeyCode.M)) {
+        //    if (toggleMap) {
+        //        toggleMap = false;  
+        //    }
+        //    else if (!toggleMap) {
+        //        toggleMap = true;
+        //    }
+        //    map.SetActive(toggleMap);
+        //}
         if (skillCheckIsActive) { 
             currentAngle += rotationSpeed * Time.deltaTime;
             needle.rectTransform.rotation = Quaternion.Euler(0f, 0f, -currentAngle);

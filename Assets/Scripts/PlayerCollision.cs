@@ -81,7 +81,7 @@ public class PlayerCollision : MonoBehaviour
             }
             else if (readyToOpenDoor) {
                 if (collidedObj.name == "End Hitbox") {
-                    if(ObjectiveManager.repairedObjectCount == 9) {
+                    if (ObjectiveManager.repairedObjectCount == 9) {
                         StartCoroutine(LoadNextScene());
                     }
                     else {
@@ -89,19 +89,27 @@ public class PlayerCollision : MonoBehaviour
                     }
                 }
                 else if (collidedObj.name == "Door Hitbox" && SceneManager.GetActiveScene().name == "Sewer") {
-                    if(ObjectiveManager.itemCount == 1) {
+                    if (ObjectiveManager.itemCount == 1) {
                         StartCoroutine(LoadNextScene());
                     }
                     else {
                         dialogueManager.dialogue = "The door is locked. Maybe there’s something underneath the sewer.";
                     }
                 }
+                else if (SceneManager.GetActiveScene().name == "ER3" && collidedObj.name == "Door Hitbox 3") {
+                    if (ObjectiveManager.itemCount == 2) {
+                        StartCoroutine(LoadNextScene());
+                    }
+                    else {
+                        dialogueManager.dialogue = "Find something to break the planks.";
+                    }
+                }
                 else StartCoroutine(LoadNextScene());
 
             }
             else if (readyToClimb) {
-                if(SceneManager.GetActiveScene().name == "Sewer") {
-                    if(collidedObj.name == "Ladder Hitbox") {
+                if (SceneManager.GetActiveScene().name == "Sewer") {
+                    if (collidedObj.name == "Ladder Hitbox") {
                         transform.position = new Vector3(15.5f, -22.5f, 0f);
                     }
                     else if (collidedObj.name == "Ladder Hitbox 2") {
@@ -111,9 +119,22 @@ public class PlayerCollision : MonoBehaviour
                 readyToClimb = false;
             }
             else if (readyToCollectItem) {
-                ObjectiveManager.itemCount++;
-                dialogueManager.dialogue = "You got a key.";
-                readyToCollectItem = false;
+                if (SceneManager.GetActiveScene().name == "Sewer" && ObjectiveManager.itemCount < 1) {
+                    ObjectiveManager.itemCount++;
+                    dialogueManager.dialogue = "You got a key.";
+                    readyToCollectItem = false;
+                }
+                else if (SceneManager.GetActiveScene().name == "Storage" && ObjectiveManager.itemCount < 2) {
+                    if(collidedObj.name == "Item Hitbox 3 Crowbar") {
+                        ObjectiveManager.itemCount++;
+                        dialogueManager.dialogue = "You found a crowbar.";
+                    }
+                    else {
+                        dialogueManager.dialogue = "There's nothing.";
+                    }
+                    readyToCollectItem = false;
+                }
+                
             }
         }
     }

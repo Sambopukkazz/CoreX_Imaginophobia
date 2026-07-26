@@ -4269,8 +4269,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 782632e6dbabf0847ae56632a3f65cd0, type: 3}
   - {fileID: 8300000, guid: ac987ac5ffe5ff14ea0c6ba3d00e9216, type: 3}
   - {fileID: 8300000, guid: e7204aa9b7aaa7e4c91b17c084cadb55, type: 3}
-  autophobiaIndicator: {fileID: 0}
-  scopophobiaIndicator: {fileID: 0}
+  autophobiaIndicator: {fileID: 8300000, guid: 7f465fd5a6b9a7e4fbecfa406e77dcc8, type: 3}
+  scopophobiaIndicator: {fileID: 8300000, guid: a99647dc8aa0d79429a658f3679b3ac4, type: 3}
   uiManager: {fileID: 1852759580}
 --- !u!4 &662283022
 Transform:
@@ -7592,7 +7592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 6598290243764561369, guid: 52811cb78ad252c41a2f58ceff318b14, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

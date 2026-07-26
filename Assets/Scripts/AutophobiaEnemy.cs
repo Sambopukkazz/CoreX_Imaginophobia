@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AutophobiaEnemy : MonoBehaviour
 {
-    private float moveSpeed = 2.5f;
+    private float moveSpeed = 3.5f;
     private GameObject player;
 
     private Animator animator;

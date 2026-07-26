@@ -3299,7 +3299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 6598290243764561369, guid: 52811cb78ad252c41a2f58ceff318b14, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8440,6 +8440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1679991540}
+  - component: {fileID: 1679991541}
   m_Layer: 0
   m_Name: Objective Manager
   m_TagString: Untagged
@@ -8462,6 +8463,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1679991541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679991539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27129d0c860009458615a241f800116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autophobiaPrefab: {fileID: 2911449130889717178, guid: c8aa68a91b36c6c468c404b4dc6ee42b, type: 3}
+  scopophobiaPrefab: {fileID: 1929650468111132526, guid: 6d1e4ad3101c33445af29c087bfc4b2d, type: 3}
+  spawnPos: []
+  playerCollision: {fileID: 100752781}
+  uiManager: {fileID: 467790095}
+  collision: {fileID: 0}
 --- !u!1 &1690419903
 GameObject:
   m_ObjectHideFlags: 3
