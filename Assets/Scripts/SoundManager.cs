@@ -13,6 +13,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private List<AudioClip> elecSFX;
     [SerializeField] private AudioClip autophobiaIndicator;
     [SerializeField] private AudioClip scopophobiaIndicator;
+    [SerializeField] private AudioClip closeDoor;
+    [SerializeField] private AudioClip openDoor;
 
     [SerializeField] private UIManager uiManager;
 
@@ -58,6 +60,13 @@ public class SoundManager : MonoBehaviour
             speaker.PlayAudioClip(scopophobiaIndicator);
         }
 
+    }
+    public void PlayDoorSFX(Vector2 pos, bool open)
+    {
+        speakerObject = Instantiate(speakerPrefab, pos, Quaternion.identity);
+        speaker = speakerObject.GetComponent<AudioPlayer>();
+        if (open) speaker.PlayAudioClip(openDoor);
+        else speaker.PlayAudioClip(closeDoor);
     }
 
     public void PlayLockerSFX(Vector2 pos,bool open) {

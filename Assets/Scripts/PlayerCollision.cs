@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class PlayerCollision : MonoBehaviour
 {
@@ -34,33 +35,7 @@ public class PlayerCollision : MonoBehaviour
         playerActions = GetComponent<PlayerActions>();
         guideTxt = transitionUI.GetComponentInChildren<TextMeshProUGUI>();
 
-        if (lastScene == "ER1" && SceneManager.GetActiveScene().name == "Sewer") {
-            transform.position = new Vector2(11.5f, -0.5f);
-        }
-        else if(lastScene == "Sewer" && SceneManager.GetActiveScene().name == "ER2") {
-            transform.position = new Vector2(-8.25f, -0.5f);
-        }
-        else if (lastScene == "Sewer" && SceneManager.GetActiveScene().name == "ER3") {
-            transform.position = new Vector2(-8.25f, -0.5f);
-        }
-        else if (lastScene == "ER2" && SceneManager.GetActiveScene().name == "Sewer 2nd spot") {
-            transform.position = new Vector2(4.5f, -0.5f);
-        }
-        else if (lastScene == "ER2" && SceneManager.GetActiveScene().name == "Sewer") {
-            transform.position = new Vector2(-14.5f, -0.5f);
-        }
-        else if (lastScene == "ER3" && SceneManager.GetActiveScene().name == "Sewer") {
-            transform.position = new Vector2(-9.5f, -22.5f);
-        }
-        else if (lastScene == "ER3" && SceneManager.GetActiveScene().name == "Sewer 2nd spot") {
-            transform.position = new Vector2(-2.5f, -0.5f);
-        }
-        else if (lastScene == "Sewer 2nd spot" && SceneManager.GetActiveScene().name == "ER2") {
-            transform.position = new Vector2(8.25f, -0.5f);
-        }
-        else if (lastScene == "Sewer 2nd spot" && SceneManager.GetActiveScene().name == "ER3") {
-            transform.position = new Vector2(8.25f, -0.5f);
-        }
+        SceneSetup();
     }
 
     void Update()
@@ -83,29 +58,38 @@ public class PlayerCollision : MonoBehaviour
                 if (collidedObj.name == "End Hitbox") {
                     if (ObjectiveManager.repairedObjectCount == 9) {
                         StartCoroutine(LoadNextScene());
+                        playerActions.UseDoor(true);
+                        readyToOpenDoor = false;
                     }
                     else {
                         dialogueManager.dialogue = "You feel obligated to not exit.";
                     }
                 }
                 else if (collidedObj.name == "Door Hitbox" && SceneManager.GetActiveScene().name == "Sewer") {
-                    if (ObjectiveManager.itemCount == 1) {
+                    if (ObjectiveManager.inventory.Contains("key")) {
                         StartCoroutine(LoadNextScene());
+                        playerActions.UseDoor(true);
+                        readyToOpenDoor = false;
                     }
                     else {
                         dialogueManager.dialogue = "The door is locked. Maybe there’s something underneath the sewer.";
                     }
                 }
                 else if (SceneManager.GetActiveScene().name == "ER3" && collidedObj.name == "Door Hitbox 3") {
-                    if (ObjectiveManager.itemCount == 2) {
+                    if (ObjectiveManager.inventory.Contains("crowbar")) {
                         StartCoroutine(LoadNextScene());
+                        playerActions.UseDoor(true);
+                        readyToOpenDoor = false;
                     }
                     else {
                         dialogueManager.dialogue = "Find something to break the planks.";
                     }
                 }
-                else StartCoroutine(LoadNextScene());
-
+                else {
+                    StartCoroutine(LoadNextScene());
+                    playerActions.UseDoor(true);
+                    readyToOpenDoor = false;
+                }
             }
             else if (readyToClimb) {
                 if (SceneManager.GetActiveScene().name == "Sewer") {
@@ -119,14 +103,14 @@ public class PlayerCollision : MonoBehaviour
                 readyToClimb = false;
             }
             else if (readyToCollectItem) {
-                if (SceneManager.GetActiveScene().name == "Sewer" && ObjectiveManager.itemCount < 1) {
-                    ObjectiveManager.itemCount++;
+                if (SceneManager.GetActiveScene().name == "Sewer" && !ObjectiveManager.inventory.Contains("key")) {
+                    ObjectiveManager.inventory.Add("key");
                     dialogueManager.dialogue = "You got a key.";
                     readyToCollectItem = false;
                 }
-                else if (SceneManager.GetActiveScene().name == "Storage" && ObjectiveManager.itemCount < 2) {
+                else if (SceneManager.GetActiveScene().name == "Storage" && !ObjectiveManager.inventory.Contains("crowbar")) {
                     if(collidedObj.name == "Item Hitbox 3 Crowbar") {
-                        ObjectiveManager.itemCount++;
+                        ObjectiveManager.inventory.Add("crowbar");
                         dialogueManager.dialogue = "You found a crowbar.";
                     }
                     else {
@@ -196,7 +180,6 @@ public class PlayerCollision : MonoBehaviour
         if(collidedObj.name != "End Hitbox") {
             transitionUI.GetComponent<Animator>().SetTrigger("ChangeScene");
         }
-        yield return new WaitForSeconds(1f);
         if (dead) {
             if (killedBy == "Autophobia") {
                 guideTxt.text = "You have autophobia, don’t you?";
@@ -218,6 +201,7 @@ public class PlayerCollision : MonoBehaviour
             }
         }
         else {
+            yield return new WaitForSeconds(1f);
             lastScene = SceneManager.GetActiveScene().name;
             if(SceneManager.GetActiveScene().name == "ER1") {
                 if (collidedObj.name == "Door Hitbox") {
@@ -282,6 +266,51 @@ public class PlayerCollision : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == "Storage") {
                 SceneManager.LoadScene("ER3");
             }
+        }
+    }
+
+    private void SceneSetup()
+    {
+
+        if (lastScene == "ER1" && SceneManager.GetActiveScene().name == "Sewer")
+        {
+            transform.position = new Vector2(11.5f, -0.5f);
+        }
+        else if (lastScene == "Sewer" && SceneManager.GetActiveScene().name == "ER2")
+        {
+            transform.position = new Vector2(-8.25f, -0.5f);
+        }
+        else if (lastScene == "Sewer" && SceneManager.GetActiveScene().name == "ER3")
+        {
+            transform.position = new Vector2(-8.25f, -0.5f);
+        }
+        else if (lastScene == "ER2" && SceneManager.GetActiveScene().name == "Sewer 2nd spot")
+        {
+            transform.position = new Vector2(4.5f, -0.5f);
+        }
+        else if (lastScene == "ER2" && SceneManager.GetActiveScene().name == "Sewer")
+        {
+            transform.position = new Vector2(-14.5f, -0.5f);
+        }
+        else if (lastScene == "ER3" && SceneManager.GetActiveScene().name == "Sewer")
+        {
+            transform.position = new Vector2(-9.5f, -22.5f);
+        }
+        else if (lastScene == "ER3" && SceneManager.GetActiveScene().name == "Sewer 2nd spot")
+        {
+            transform.position = new Vector2(-2.5f, -0.5f);
+        }
+        else if (lastScene == "Sewer 2nd spot" && SceneManager.GetActiveScene().name == "ER2")
+        {
+            transform.position = new Vector2(8.25f, -0.5f);
+        }
+        else if (lastScene == "Sewer 2nd spot" && SceneManager.GetActiveScene().name == "ER3")
+        {
+            transform.position = new Vector2(8.25f, -0.5f);
+        }
+        if (lastScene != null)
+        {
+            playerActions.UseDoor(false);
         }
     }
 }

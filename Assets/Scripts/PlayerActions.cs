@@ -38,7 +38,6 @@ public class PlayerActions : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         SpotLight = GetComponentInChildren<Light2D>();
         animator = GetComponent<Animator>();
-        soundManager = soundManager.GetComponent<SoundManager>();
         
         globalVolume.GetComponent<Volume>().profile.TryGet(out colorAdjustments);
         globalVolume.GetComponent<Volume>().profile.TryGet(out filmGrain);
@@ -197,5 +196,9 @@ public class PlayerActions : MonoBehaviour
     public void PlayTurnBackIndicator() {
         soundManager.PlaySingleSound(transform.position,"Auto",0);
         indicatorPlayed = true;
+    }
+
+    public void UseDoor(bool open) {
+        soundManager.PlayDoorSFX(transform.position, open);
     }
 }

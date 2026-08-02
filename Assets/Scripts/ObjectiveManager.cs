@@ -17,9 +17,10 @@ public class ObjectiveManager : MonoBehaviour
 
     public static int stage;
     public static int repairedObjectCount;
-    public static int itemCount;
+    public static List<string> inventory;
     void Start()
     {
+        inventory = new List<string>();
     }
 
     // Update is called once per frame
@@ -41,11 +42,11 @@ public class ObjectiveManager : MonoBehaviour
             SpawnAutophobia(new Vector2(-16f, -0.5f));
             spanwed = true;
         }
-        else if (repairedObjectCount == 8 && SceneManager.GetActiveScene().name == "ER3" && !spanwed && ObjectiveManager.itemCount == 2) {
+        else if (repairedObjectCount == 8 && SceneManager.GetActiveScene().name == "ER3" && !spanwed && ObjectiveManager.inventory.Contains("crowbar")) {
             SpawnScopophobia(new Vector2(-40f, -0.5f));
             spanwed = true;
         }
-        else if (repairedObjectCount == 9 && SceneManager.GetActiveScene().name == "Sewer" && !spanwed && ObjectiveManager.itemCount == 2) {
+        else if (repairedObjectCount == 9 && SceneManager.GetActiveScene().name == "Sewer" && !spanwed && ObjectiveManager.inventory.Contains("crowbar")) {
             SpawnScopophobia(new Vector2(-50f, -0.5f));
             spanwed = true;
         }
